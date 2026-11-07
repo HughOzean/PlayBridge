@@ -35,7 +35,7 @@ export default function Home() {
         <figure className="hero-photo">
           <div className="hero-photo-frame">
             <Image
-              src="/images/playbridge-parked-scene.webp"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/playbridge-parked-scene.webp`}
               alt="AI-generated scene of a parked car interior with a dashboard display and mounted Android-style phone, overlooking woodland. Not a PlayBridge product screenshot or evidence of device compatibility."
               fill
               sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 600px) 460px, (max-width: 1150px) calc((100vw - 76px) / 2), (max-width: 1352px) calc((100vw - 138px) / 2), 607px"

@@ -25,9 +25,11 @@
 | `src/components/Home.tsx` | 页面文案、概念插图、移动导航、接收端切换、FAQ、APK 占位 |
 | `src/app/globals.css` | Tailwind 导入、主题变量、全局样式和响应式布局 |
 | `public/icon.svg` | 站点图标 |
-| `next.config.ts` | Next.js 配置，当前关闭 `poweredByHeader` |
+| `next.config.ts` | 静态导出、构建时 basePath、关闭运行时图片优化及 `poweredByHeader` |
+| `.github/workflows/pages.yml` | 手动触发的 GitHub Pages 构建与部署 |
+| `scripts/preview.mjs` | 本地静态预览，支持匹配构建路径的 `--base-path` |
 | `postcss.config.mjs` | Tailwind PostCSS 插件 |
-| `.env.example` | 环境变量说明；当前本地运行无需环境变量 |
+| `.env.example` | 可选构建前缀 `NEXT_PUBLIC_BASE_PATH`；根路径开发无需环境变量 |
 | `README.md` | 启动方式、内容边界、发布前要求及已有验证记录 |
 
 - `@/*` 指向 `src/*`。
@@ -50,14 +52,20 @@ npm run dev -- --hostname 127.0.0.1 --port 3101
 npm run typecheck
 npm run build
 
-# 构建成功后启动生产预览
+# 构建成功后预览 out/ 静态文件（不使用 next start）
 npm start -- --hostname 127.0.0.1 --port 3101
+
+# 验证 GitHub Pages 项目子路径
+NEXT_PUBLIC_BASE_PATH=/PlayBridge npm run build
+npm start -- --base-path /PlayBridge --port 3101
 ```
 
 - 不覆盖或终止不属于当前任务的已有服务；端口被占用时选用空闲端口并说明。
 - 当前没有 `lint`、`test` 脚本或自动化浏览器测试框架，不编造对应检查通过的结论。
 - 仅修改文档时核对路径、命令与源码即可；修改源码、样式、配置或依赖时执行类型检查和生产构建。
 - 构建会生成 `.next/types`，不并发运行依赖该目录的检查与构建。
+- `output: "export"` 生成 `out/`。GitHub Pages 无 Next.js 服务端，不引入依赖动态请求的服务端功能或默认图片优化接口。public 图片和图标须显式使用与 `basePath` 一致的构建时前缀。
+- Pages 工作流通过 `configure-pages` 读取真实部署路径，保持手动触发，除非用户要求自动发布。未验证账户套餐前，不声称私有仓库已可部署；不要自行公开仓库。
 - 浏览器验收需实际操作；静态检查和截图文件的存在不能替代交互验证。不可用时明确记录未验证项。
 
 ## 4. 实施约定
