@@ -10,86 +10,86 @@ function Icon({ type }: { type: "connect" | "touch" | "sound" }) {
   return <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{type === "connect" ? <><path d="M4 12a18 18 0 0 1 24 0M8 17a12 12 0 0 1 16 0M12 22a6 6 0 0 1 8 0"/><circle cx="16" cy="27" r="1"/></> : type === "touch" ? <><path d="M12 18V7a3 3 0 0 1 6 0v10l3-3a3 3 0 0 1 4 4l-6 10h-8L5 19a3 3 0 0 1 4-4l3 3Z"/><path d="M6 7a9 9 0 0 1 17-3"/></> : <><path d="M5 12h6l7-6v20l-7-6H5zM23 10a10 10 0 0 1 0 12M27 6a16 16 0 0 1 0 20"/></>}</svg>;
 }
 const faqs = [
-  ["What is PlayBridge?", "PlayBridge is an experimental Android app. The current prototype is designed to forward a phone’s car-interface video and audio to a wireless CarPlay head unit or a compatible Windows receiver, with touch input sent back to the phone."],
-  ["Is it the same as CarPlay or Android Auto?", "No. PlayBridge is a separate bridge app, not an Apple or Google product. Android Auto, Android Automotive OS and Android head units are different environments. Support for one does not imply support for the others."],
-  ["Which phones and head units are supported?", "A verified compatibility list is not available yet. The developer has reported Android Auto detection and compatibility with CarWith, OPPO Car+ and some CarLife components. These are prototype descriptions, not confirmed results for every phone or vehicle."],
-  ["Can I download the APK?", `Yes. PlayBridge ${release.version} is available from the download section below, hosted on GitHub Releases. Check the Android requirement, architecture and SHA-256 before installing. This is an experimental build; a download does not mean your phone or receiver is supported.`],
-  ["Is PlayBridge open source?", "The APK is publicly available as a binary release. That does not establish an open-source release of the Android app. An Android app source repository and license have not been confirmed on this website."],
-  ["Has it been tested in a real vehicle?", "The developer reported on November 5, 2026 that real-vehicle testing had not yet taken place. Compatibility information will need to be updated as test results become available. Set up and test only while safely parked."],
+  ["PlayBridge 是什么？", "PlayBridge 是一款实验性 Android 应用。当前原型旨在将手机车载界面的画面和声音转发至无线 CarPlay 车机或兼容的 Windows 接收端，并将触摸操作回传至手机。"],
+  ["它和 CarPlay、Android Auto 一样吗？", "不一样。PlayBridge 是独立的桥接应用，并非 Apple 或 Google 的产品。Android Auto、Android Automotive OS 和 Android 车机属于不同环境，支持其中一种并不代表支持其他环境。"],
+  ["支持哪些手机和车机？", "目前还没有经过验证的兼容设备清单。开发者曾描述原型具备 Android Auto 检测能力，并提及与 CarWith、OPPO Car+ 及部分 CarLife 组件的兼容情况。这些是原型能力描述，并非针对所有手机或车辆的测试结论。"],
+  ["现在可以下载 APK 吗？", `可以。在下方下载区可获取托管于 GitHub Releases 的 PlayBridge ${release.version}。安装前请核对 Android 版本要求、处理器架构和 SHA-256。当前版本仍属实验阶段，可下载并不代表兼容你的手机或接收端。`],
+  ["PlayBridge 开源了吗？", "目前公开提供的是 APK 安装包，这不代表 Android 应用已经开源。本网站尚未确认 Android 应用源码仓库及其开源许可证。"],
+  ["做过实车测试吗？", "开发者于 2026 年 11 月 5 日表示，当时尚未进行实车测试。兼容性信息需要随后续测试结果更新。请仅在安全停车后设置和测试。"],
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [receiver, setReceiver] = useState<"car" | "windows">("car");
   return <>
-    <a className="skip-link" href="#main">Skip to content</a>
+    <a className="skip-link" href="#main">跳转到正文</a>
     <header className="site-header"><div className="container nav-bar">
-      <a className="brand" href="#" aria-label="PlayBridge home"><Mark /><span>playbridge<span className="brand-dot">.</span></span></a>
-      <button className="menu-toggle" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? "Close −" : "Menu +"}</button>
-      <nav id="navigation" className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Main navigation">
-        <a onClick={() => setMenuOpen(false)} href="#experience">The experience</a><a onClick={() => setMenuOpen(false)} href="#how-it-works">How it works</a><a onClick={() => setMenuOpen(false)} href="#compatibility">Compatibility</a><a onClick={() => setMenuOpen(false)} href="#faq">FAQ</a><a className="nav-download" onClick={() => setMenuOpen(false)} href="#get-started">Download APK</a>
-      </nav><a className="nav-cta" href="#get-started">Download APK <Arrow /></a>
+      <a className="brand" href="#" aria-label="PlayBridge 首页"><Mark /><span>playbridge<span className="brand-dot">.</span></span></a>
+      <button className="menu-toggle" aria-label={menuOpen ? "关闭导航" : "打开导航"} aria-expanded={menuOpen} aria-controls="navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? "关闭 −" : "菜单 +"}</button>
+      <nav id="navigation" className={menuOpen ? "nav-links open" : "nav-links"} aria-label="主导航">
+        <a onClick={() => setMenuOpen(false)} href="#experience">功能介绍</a><a onClick={() => setMenuOpen(false)} href="#how-it-works">连接原理</a><a onClick={() => setMenuOpen(false)} href="#compatibility">兼容说明</a><a onClick={() => setMenuOpen(false)} href="#faq">常见问题</a><a className="nav-download" onClick={() => setMenuOpen(false)} href="#get-started">下载 APK</a>
+      </nav><a className="nav-cta" href="#get-started">下载 APK <Arrow /></a>
     </div></header>
     <main id="main">
       <section className="hero container">
-        <div className="hero-copy"><div className="eyebrow"><span className="status-dot" /> A LITTLE BRIDGE. MORE POSSIBILITIES.</div><h1>A familiar drive.<br />A new <em>connection.</em></h1><p className="hero-description">Your phone’s car interface, on a different screen. Meet the experimental bridge between your Android phone and your next connection.</p><div className="hero-actions"><a className="button primary" href="#how-it-works">See how it works <Arrow /></a><a className="text-link" href="#get-started">Get the APK <span aria-hidden="true">↓</span></a></div><div className="hero-note"><span className="tiny-bridge">↔</span> Android phone <span className="note-divider" /> Wireless CarPlay head unit or Windows receiver</div></div>
+        <div className="hero-copy"><div className="eyebrow"><span className="status-dot" /> 一座小桥，连接更多可能</div><h1>熟悉的车载界面，<br />连接<em>新的屏幕。</em></h1><p className="hero-description">把手机上的车载界面带到另一块屏幕。PlayBridge 尝试在 Android 手机与兼容的接收端之间，搭起一座连接的桥。</p><div className="hero-actions"><a className="button primary" href="#how-it-works">了解连接原理 <Arrow /></a><a className="text-link" href="#get-started">获取 APK <span aria-hidden="true">↓</span></a></div><div className="hero-note"><span className="tiny-bridge">↔</span> Android 手机 <span className="note-divider" /> 无线 CarPlay 车机或 Windows 接收端</div></div>
         <figure className="hero-photo">
           <div className="hero-photo-frame">
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/playbridge-parked-scene.webp`}
-              alt="AI-generated scene of a parked car interior with a dashboard display and mounted Android-style phone, overlooking woodland. Not a PlayBridge product screenshot or evidence of device compatibility."
+              alt="AI 生成的停车场景图：车内中控屏与支架上的 Android 手机，窗外为林地。此图并非 PlayBridge 产品截图，也不代表设备兼容性已验证。"
               fill
               sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 600px) 460px, (max-width: 1150px) calc((100vw - 76px) / 2), (max-width: 1352px) calc((100vw - 138px) / 2), 607px"
               priority
               className="hero-photo-image"
             />
             <div className="hero-photo-shade" aria-hidden="true" />
-            <span className="hero-photo-tag"><span aria-hidden="true" /> THE POSSIBILITY, PICTURED</span>
-            <div className="hero-photo-message"><span>One phone. A wider view.</span><span aria-hidden="true">↗</span></div>
+            <span className="hero-photo-tag"><span aria-hidden="true" /> 想象下一次连接</span>
+            <div className="hero-photo-message"><span>一部手机，另一种视野。</span><span aria-hidden="true">↗</span></div>
           </div>
           <figcaption className="hero-photo-caption">
             <span className="hero-photo-caption-icon" aria-hidden="true">✳</span>
-            <div><strong>A scene to imagine the connection.</strong><span>AI-generated scene · Not a product screenshot</span></div>
+            <div><strong>让连接的想法，有一个画面。</strong><span>AI 生成场景图 · 非产品截图</span></div>
           </figcaption>
         </figure>
       </section>
-      <div className="ecosystem container"><span>DESIGNED TO BRIDGE</span><div>Android <small>phone</small></div><span className="ecosystem-plus">+</span><div>Wireless CarPlay <small>head unit</small></div><span className="ecosystem-or">or</span><div>Windows <small>compatible receiver</small></div><span className="ecosystem-status">Early prototype <span>↗</span></span></div>
-      <section id="experience" className="section container experience"><div className="section-heading"><div><div className="eyebrow">01 / THE IDEA</div><h2>Less between you<br/>and your next screen.</h2></div><p>One focused idea: carry the phone’s car-interface experience across to a compatible receiver.</p></div><div className="feature-grid"><article className="feature"><div className="feature-icon"><Icon type="connect"/></div><span className="feature-number">01</span><h3>Bridge the connection.</h3><p>Designed to forward your phone’s car-interface video to a wireless CarPlay head unit or compatible Windows receiver.</p><span className="feature-tag">PHONE → RECEIVER</span></article><article className="feature"><div className="feature-icon"><Icon type="touch"/></div><span className="feature-number">02</span><h3>A two-way conversation.</h3><p>The prototype includes touch input forwarding, so supported receiver interactions can travel back to the phone.</p><span className="feature-tag">TOUCH INPUT RETURN</span></article><article className="feature"><div className="feature-icon"><Icon type="sound"/></div><span className="feature-number">03</span><h3>Picture. Sound. Together.</h3><p>Video and audio forwarding are part of the current prototype, with connection and permission guidance in the app.</p><span className="feature-tag">VIDEO + AUDIO</span></article></div><p className="section-footnote">Prototype capabilities described by the developer. Device-by-device compatibility is still to be verified.</p></section>
-      <section id="how-it-works" className="how-section"><div className="container how-layout"><div className="how-copy"><div className="eyebrow">02 / THE CONNECTION</div><h2>A small bridge.<br/>A simple idea.</h2><p>PlayBridge sits between your Android phone’s car interface and a compatible receiver.</p><div className="receiver-switch" role="group" aria-label="Choose receiver concept"><button aria-pressed={receiver === "car"} onClick={() => setReceiver("car")}>Car display</button><button aria-pressed={receiver === "windows"} onClick={() => setReceiver("windows")}>Windows receiver</button></div><p className="switch-note" aria-live="polite">{receiver === "car" ? "Explore the wireless CarPlay head-unit connection concept." : "Explore the compatible Windows receiver connection concept. Receiver software requirements are not confirmed yet."}</p></div><div className="connection-flow"><div className="flow-devices"><div className="flow-endpoint"><span className="device-outline phone-outline"/><strong>Android phone</strong><small>Your car interface</small></div><div className="flow-line"><span>→</span></div><div className="flow-bridge"><Mark/><strong>PlayBridge</strong><small>The bridge</small></div><div className="flow-line"><span>→</span></div><div className="flow-endpoint"><span className={receiver === "car" ? "device-outline screen-outline" : "device-outline laptop-outline"}/><strong>{receiver === "car" ? "Car display" : "Windows"}</strong><small>{receiver === "car" ? "Wireless CarPlay receiver" : "Compatible receiver"}</small></div></div><div className="flow-return"><span>←</span> Touch input travels back to your phone</div><div className="flow-note"><span>i</span> Connection diagram only. Actual setup depends on the phone and receiver.</div></div></div></section>
-      <section id="compatibility" className="section container compatibility"><div className="compat-copy"><div className="eyebrow">03 / BEFORE YOU CONNECT</div><h2>The right setup<br/>comes first.</h2><p>A phone, a receiver, and a little clarity. Here’s what we know about the prototype so far.</p><a href="#faq" className="text-link">A few more answers <Arrow/></a><div className="test-notice"><span className="notice-icon">i</span><div><strong>Early days. Honest expectations.</strong><p>As of November 5, 2026, the developer reported that real-vehicle testing had not yet taken place.</p></div></div></div><div className="compat-table"><div className="compat-table-header"><span>THE ESSENTIALS</span><span>CURRENT STATUS</span></div>{[["Android phone", "Phone-side app", `${release.androidVersion} or later; receiver support requires testing`],["Car interface", "Automatic detection", "Android Auto first; other components require testing"],["Wireless CarPlay head unit", "Intended receiver", "Vehicle and head-unit compatibility not yet verified"],["Windows receiver", "Alternative receiver", "Compatible receiver and setup details to be confirmed"]].map(([name, status, detail])=><div className="compat-row" key={name}><div><h3>{name}</h3><p>{detail}</p></div><span className="status-pill">{status}</span></div>)}<div className="compat-bottom">Support is specific to each setup. No universal vehicle compatibility is claimed.</div></div></section>
-      <section className="setup-section container"><div className="section-heading"><div><div className="eyebrow">04 / GETTING READY</div><h2>Know the path.<br/>Before you start.</h2></div><p>A preview of the setup journey. Detailed device-specific instructions will follow testing.</p></div><div className="steps">{[["Check your setup", "Confirm your phone’s car-interface components and the receiver’s requirements."],["Follow the app guidance", "The prototype includes Bluetooth, Wi-Fi, permission and background-running guidance."],["Connect while parked", "Check picture, sound and touch response. Record your exact device setup if anything fails."]].map(([title, body], i)=><article key={title}><span className="step-index">0{i+1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section>
-      <section id="faq" className="faq-section container"><div><div className="eyebrow">05 / GOOD TO KNOW</div><h2>A few questions.<br/>Clear answers.</h2><p>Start with what’s known.<br/>Keep the unknowns in view.</p></div><div className="faq-list">{faqs.map(([question, answer])=><details key={question}><summary>{question}<span className="faq-plus" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
+      <div className="ecosystem container"><span>连接的两端</span><div>Android <small>手机</small></div><span className="ecosystem-plus">+</span><div>无线 CarPlay <small>车机</small></div><span className="ecosystem-or">或</span><div>Windows <small>兼容接收端</small></div><span className="ecosystem-status">早期原型 <span>↗</span></span></div>
+      <section id="experience" className="section container experience"><div className="section-heading"><div><div className="eyebrow">01 / 产品想法</div><h2>让手机与屏幕，<br/>靠近一点。</h2></div><p>一个专注的想法：将手机车载界面的体验，传递到兼容的接收端。</p></div><div className="feature-grid"><article className="feature"><div className="feature-icon"><Icon type="connect"/></div><span className="feature-number">01</span><h3>连接另一块屏幕。</h3><p>旨在将手机车载界面的画面转发至无线 CarPlay 车机或兼容的 Windows 接收端。</p><span className="feature-tag">手机 → 接收端</span></article><article className="feature"><div className="feature-icon"><Icon type="touch"/></div><span className="feature-number">02</span><h3>让操作双向传递。</h3><p>原型包含触摸输入回传能力，让接收端上受支持的操作可以传回手机。</p><span className="feature-tag">触摸操作回传</span></article><article className="feature"><div className="feature-icon"><Icon type="sound"/></div><span className="feature-number">03</span><h3>画面与声音，一起传递。</h3><p>当前原型包含视频和音频转发能力，应用内提供连接与权限设置指引。</p><span className="feature-tag">画面 + 声音</span></article></div><p className="section-footnote">以上为开发者描述的原型能力，具体设备的兼容性仍需逐一验证。</p></section>
+      <section id="how-it-works" className="how-section"><div className="container how-layout"><div className="how-copy"><div className="eyebrow">02 / 连接原理</div><h2>一座小桥，<br/>一个简单的想法。</h2><p>PlayBridge 连接 Android 手机的车载界面与兼容的接收端。</p><div className="receiver-switch" role="group" aria-label="选择接收端示意"><button aria-pressed={receiver === "car"} onClick={() => setReceiver("car")}>车机屏幕</button><button aria-pressed={receiver === "windows"} onClick={() => setReceiver("windows")}>Windows 接收端</button></div><p className="switch-note" aria-live="polite">{receiver === "car" ? "查看无线 CarPlay 车机的连接示意。" : "查看兼容 Windows 接收端的连接示意。接收软件的具体要求尚待确认。"}</p></div><div className="connection-flow"><div className="flow-devices"><div className="flow-endpoint"><span className="device-outline phone-outline"/><strong>Android 手机</strong><small>手机车载界面</small></div><div className="flow-line"><span>→</span></div><div className="flow-bridge"><Mark/><strong>PlayBridge</strong><small>连接桥梁</small></div><div className="flow-line"><span>→</span></div><div className="flow-endpoint"><span className={receiver === "car" ? "device-outline screen-outline" : "device-outline laptop-outline"}/><strong>{receiver === "car" ? "车机屏幕" : "Windows"}</strong><small>{receiver === "car" ? "无线 CarPlay 接收端" : "兼容接收端"}</small></div></div><div className="flow-return"><span>←</span> 触摸操作回传至手机</div><div className="flow-note"><span>i</span> 仅为连接示意，实际设置取决于手机和接收端。</div></div></div></section>
+      <section id="compatibility" className="section container compatibility"><div className="compat-copy"><div className="eyebrow">03 / 连接前须知</div><h2>连接之前，<br/>先了解设备要求。</h2><p>一部手机，一个接收端。开始之前，先看看目前已知的要求与限制。</p><a href="#faq" className="text-link">查看常见问题 <Arrow/></a><div className="test-notice"><span className="notice-icon">i</span><div><strong>仍在起步，保留真实预期。</strong><p>开发者于 2026 年 11 月 5 日表示，当时尚未进行实车测试。</p></div></div></div><div className="compat-table"><div className="compat-table-header"><span>设备与环境</span><span>当前状态</span></div>{[["Android 手机", "手机端应用", `${release.androidVersion} 及以上；接收端兼容性仍需测试`],["车载界面", "自动检测", "优先检测 Android Auto，其他组件仍需测试"],["无线 CarPlay 车机", "目标接收端", "车辆与车机兼容性尚未验证"],["Windows 接收端", "备选接收端", "兼容接收端及设置细节尚待确认"]].map(([name, status, detail])=><div className="compat-row" key={name}><div><h3>{name}</h3><p>{detail}</p></div><span className="status-pill">{status}</span></div>)}<div className="compat-bottom">兼容情况取决于具体设备组合，不代表支持所有车辆。</div></div></section>
+      <section className="setup-section container"><div className="section-heading"><div><div className="eyebrow">04 / 开始之前</div><h2>了解步骤，<br/>再开始连接。</h2></div><p>先了解大致设置流程。针对具体设备的详细指引，将在测试后补充。</p></div><div className="steps">{[["核对设备要求", "确认手机的车载界面组件，以及接收端的具体要求。"],["跟随应用指引", "原型内提供蓝牙、Wi-Fi、权限与后台运行的设置指引。"],["停车后连接测试", "检查画面、声音与触摸响应。如遇异常，请记录具体设备和设置情况。"]].map(([title, body], i)=><article key={title}><span className="step-index">0{i+1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section>
+      <section id="faq" className="faq-section container"><div><div className="eyebrow">05 / 常见问题</div><h2>常见疑问，<br/>逐一说明。</h2><p>说明已知信息，<br/>也保留尚待验证的部分。</p></div><div className="faq-list">{faqs.map(([question, answer])=><details key={question}><summary>{question}<span className="faq-plus" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
       <section id="get-started" className="download-section container" aria-labelledby="download-heading">
         <div className="download-copy">
-          <div className="eyebrow">THE NEXT CONNECTION</div>
-          <h2 id="download-heading">Download<br/>PlayBridge.</h2>
-          <p>An experimental build, ready to explore. Check your phone and receiver requirements before installing.</p>
-          <p className="download-parked-note">Set up and test only while safely parked. Device and vehicle compatibility is still to be verified.</p>
+          <div className="eyebrow">开启下一次连接</div>
+          <h2 id="download-heading">下载<br/>PlayBridge。</h2>
+          <p>下载实验版本，探索连接的可能。安装前请先核对手机与接收端要求。</p>
+          <p className="download-parked-note">请仅在安全停车后设置和测试。设备与车辆兼容性仍有待验证。</p>
         </div>
         <div className="release-area">
-          <div className="release-heading"><span className="release-label">ANDROID APK</span><span className="release-stage">Experimental</span></div>
+          <div className="release-heading"><span className="release-label">Android 安装包</span><span className="release-stage">实验版本</span></div>
           <h3 className="release-version">PlayBridge <span>{release.version}</span></h3>
-          <p className="release-specs">{release.androidVersion}+ <span aria-hidden="true">·</span> {release.architecture} <span aria-hidden="true">·</span> {release.sizeLabel}</p>
-          <a className="button release-download" href={release.downloadUrl} aria-label={`Download PlayBridge ${release.version} APK for ${release.architecture}`}>
-            Download APK <span aria-hidden="true">↓</span>
+          <p className="release-specs">{release.androidVersion} 及以上 <span aria-hidden="true">·</span> {release.architecture} <span aria-hidden="true">·</span> {release.sizeLabel}</p>
+          <a className="button release-download" href={release.downloadUrl} aria-label={`下载适用于 ${release.architecture} 的 PlayBridge ${release.version} APK`}>
+            下载 APK <span aria-hidden="true">↓</span>
           </a>
-          <p className="release-install-note">Download to your Android phone, then open the APK. Android may ask you to allow installs from this browser.</p>
-          <div className="release-links"><span>Hosted on GitHub Releases</span><a href={release.releaseUrl}>Release details <Arrow /></a></div>
+          <p className="release-install-note">将 APK 下载到 Android 手机后打开。系统可能会提示你允许从当前浏览器安装应用。</p>
+          <div className="release-links"><span>托管于 GitHub Releases</span><a href={release.releaseUrl}>版本详情 <Arrow /></a></div>
           <details className="release-verification">
-            <summary>File details &amp; checksum <span aria-hidden="true">+</span></summary>
+            <summary>文件信息与校验值 <span aria-hidden="true">+</span></summary>
             <dl>
-              <div><dt>Package</dt><dd>{release.packageName}</dd></div>
-              <div><dt>Version code</dt><dd>{release.versionCode}</dd></div>
-              <div><dt>Minimum SDK</dt><dd>{release.minSdk}</dd></div>
-              <div><dt>File size</dt><dd>{release.sizeBytes.toLocaleString("en-US")} bytes</dd></div>
+              <div><dt>包名</dt><dd>{release.packageName}</dd></div>
+              <div><dt>版本代码</dt><dd>{release.versionCode}</dd></div>
+              <div><dt>最低 SDK</dt><dd>{release.minSdk}</dd></div>
+              <div><dt>文件大小</dt><dd>{release.sizeBytes.toLocaleString("zh-CN")} 字节</dd></div>
             </dl>
             <div className="release-checksum"><strong>SHA-256</strong><code>{release.sha256}</code></div>
-            <a className="release-checksum-link" href={release.checksumUrl}>Download checksum file <Arrow /></a>
+            <a className="release-checksum-link" href={release.checksumUrl}>下载校验文件 <Arrow /></a>
           </details>
         </div>
         <div className="download-decoration" aria-hidden="true">↗</div>
       </section>
     </main>
-    <footer className="container footer"><div className="footer-top"><a href="#" className="brand"><Mark/><span>playbridge<span className="brand-dot">.</span></span></a><span>A little bridge. A new connection.</span><a href="#main" className="text-link">Back to top ↑</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} PlayBridge</span><p>Independent experimental software. Not affiliated with Apple, Google or vehicle manufacturers. Product names belong to their respective owners.</p><span>Designed for parked setup & testing.</span></div></footer>
+    <footer className="container footer"><div className="footer-top"><a href="#" className="brand"><Mark/><span>playbridge<span className="brand-dot">.</span></span></a><span>一座小桥，一次新的连接。</span><a href="#main" className="text-link">返回顶部 ↑</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} PlayBridge</span><p>独立开发的实验性软件，与 Apple、Google 或汽车厂商无关联。文中产品名称归各自权利人所有。</p><span>请在安全停车后设置与测试。</span></div></footer>
   </>;
 }

@@ -4,7 +4,7 @@
 
 ## 1. 项目定位与事实边界
 
-- 本仓库是 PlayBridge 的英文产品落地页，不包含 Android 应用或 Windows 接收端实现。
+- 本仓库是 PlayBridge 的简体中文产品落地页，不包含 Android 应用或 Windows 接收端实现。
 - PlayBridge 当前被描述为实验性 Android 桥接应用：设计目标是把手机车载界面的视频、音频转发到无线 CarPlay 车机或兼容的 Windows 接收端，并回传触摸输入。
 - 原型能力描述不等于经过验证的兼容性结果。区分 Android Auto、Android Automotive OS 和 Android 车机，不得混为一谈。
 - 页面记录的是开发者于 **2026-11-05** 报告尚未进行实车测试的历史状态。只有取得新的测试证据后，才能更新该状态；不得将旧日期改成今天以暗示重新验证。
@@ -21,7 +21,7 @@
 | 路径 | 职责 |
 | --- | --- |
 | `src/app/page.tsx` | 首页路由，渲染 `Home` |
-| `src/app/layout.tsx` | 根布局、英文文档语言、Metadata、草稿 robots 指令和图标 |
+| `src/app/layout.tsx` | 根布局、简体中文文档语言、Metadata、草稿 robots 指令和图标 |
 | `src/components/Home.tsx` | 页面文案、概念插图、移动导航、接收端切换、FAQ、APK 下载区 |
 | `src/data/release.json` | 经核验的 APK 版本、要求、大小、SHA-256 及固定版本下载链接 |
 | `docs/releases/` | 二进制核验记录、发布说明及校验文件 |
@@ -73,7 +73,7 @@ npm start -- --base-path /PlayBridge --port 3101
 ## 4. 实施约定
 
 - 默认端到端执行：检查上下文、最小范围修改、验证、交付。可从源码推断的信息不要反复询问。
-- 与用户沟通默认使用中文；网站可见文案、`lang="en"` 和可访问名称保持英文，除非任务明确要求本地化。
+- 与用户沟通默认使用中文；网站默认文案、Metadata、`lang="zh-CN"` 和可访问名称保持简体中文。品牌名和技术标识（如 Android、CarPlay、SHA-256）保留原名，除非任务明确要求其他语言。
 - 保持现有浅色纸面背景、深绿色与青柠点缀、衬线强调文字及 CSS/SVG 插图语言；沿用 `globals.css` 主题变量。
 - 沿用现有组件和样式组织；按实际复杂度拆分组件，不为简单展示页引入状态管理、UI 库、远程字体或新服务。
 - 新增客户端组件只用于确有交互需求的部分。Metadata 继续使用 Next.js 的服务端元数据接口。

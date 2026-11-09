@@ -56,3 +56,26 @@
 @media(max-width:1150px){.download-section{gap:35px}.release-area{width:360px;padding:22px}}
 @media(max-width:850px){.nav-download{display:block}.download-section{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:25px;padding:35px 28px}.release-area{width:100%;padding:19px}.release-version{font-size:22px}.release-specs{font-size:10px;gap:6px}.release-download{font-size:12px;padding:16px}.release-links{font-size:8px}}
 @media(max-width:600px){.download-section{display:flex;gap:26px;padding:32px 23px}.download-section h2{font-size:38px}.release-area{padding:20px}.release-version{font-size:24px}.release-specs{font-size:10px;gap:7px}.release-download{font-size:13px}.release-links{font-size:9px}.release-verification dl>div{grid-template-columns:80px minmax(0,1fr);gap:8px}.download-copy .download-parked-note{margin-top:17px}}
+
+/* Simplified Chinese typography: native fonts, natural spacing and readable labels. */
+html:lang(zh-CN) body{font-family:Arial,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+html:lang(zh-CN) .hero h1{font-size:clamp(30px,3.8vw,52px);line-height:1.4;letter-spacing:.015em}
+html:lang(zh-CN) .hero h1 em{font-family:"Songti SC",SimSun,serif;font-style:normal;letter-spacing:.015em}
+html:lang(zh-CN) h2{line-height:1.4;letter-spacing:.01em}
+html:lang(zh-CN) .feature h3{letter-spacing:0;line-height:1.5}
+html:lang(zh-CN) .eyebrow{font-size:11px;letter-spacing:.12em;line-height:1.7}
+html:lang(zh-CN) .hero-description{line-height:1.95}
+html:lang(zh-CN) .hero-note{font-size:11px;flex-wrap:wrap}
+html:lang(zh-CN) .hero-photo-message{font-family:"Songti SC",SimSun,serif;font-style:normal;line-height:1.5}
+html:lang(zh-CN) .hero-photo-tag{font-size:11px;letter-spacing:.12em}
+html:lang(zh-CN) .hero-photo-caption strong{font-size:12px}
+html:lang(zh-CN) .hero-photo-caption div>span{font-size:11px}
+html:lang(zh-CN) .feature-tag{font-size:10px;letter-spacing:.08em}
+html:lang(zh-CN) .section-footnote{font-size:11px;line-height:1.8}
+html:lang(zh-CN) .release-stage,html:lang(zh-CN) .release-links{font-size:11px}
+html:lang(zh-CN) .release-install-note{font-size:12px;line-height:1.9}
+html:lang(zh-CN) .release-verification{font-size:12px}
+html:lang(zh-CN) .download-copy .download-parked-note{font-size:12px;line-height:1.9}
+html:lang(zh-CN) .footer-bottom{font-size:11px;line-height:1.9}
+@media(max-width:850px){html:lang(zh-CN) .hero h1{font-size:30px}html:lang(zh-CN) .hero-note{font-size:10px}html:lang(zh-CN) .hero-photo-message{font-size:20px}}
+@media(max-width:600px){html:lang(zh-CN) .hero h1{font-size:clamp(30px,8.5vw,42px)}html:lang(zh-CN) h2{font-size:32px}html:lang(zh-CN) .hero-photo-tag{font-size:10px}html:lang(zh-CN) .faq-list summary,html:lang(zh-CN) .faq-list details>p{font-size:14px}html:lang(zh-CN) .flow-endpoint small,html:lang(zh-CN) .flow-bridge small{font-size:9px}html:lang(zh-CN) .flow-note{font-size:10px}html:lang(zh-CN) .flow-return{font-size:11px}html:lang(zh-CN) .ecosystem small{font-size:10px}html:lang(zh-CN) .compat-row p{font-size:11px}html:lang(zh-CN) .status-pill{font-size:10px}html:lang(zh-CN) .compat-bottom{font-size:11px}}

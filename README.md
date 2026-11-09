@@ -50,7 +50,7 @@ The draft `noindex, follow` remains intentional. Deployability does not mark the
 
 ## Content and interactions
 
-- English product page: concept, capabilities, interactive receiver diagram, compatibility notes, setup overview and native accordion FAQ.
+- Simplified Chinese product page: concept, capabilities, interactive receiver diagram, compatibility notes, setup overview and native accordion FAQ. Document language is `zh-CN`; metadata and accessible labels are also localized. Brand names, technical identifiers and verified release data retain their original values.
 - Responsive navigation with mobile toggle and anchor links.
 - The hero uses an AI-generated photorealistic scene of a parked car, served as a local WebP with responsive Next.js Image layout and no runtime image optimization. It is visibly labeled as AI-generated, not a product screenshot or evidence of compatibility. Image provenance and prompt are recorded in `previews/image-generation.md`.
 - The interactive receiver diagram remains a CSS/SVG concept illustration.
@@ -102,3 +102,10 @@ This repository uses a manually triggered Pages deployment workflow. The APK upl
 - `npm run typecheck` and `NEXT_PUBLIC_BASE_PATH=/PlayBridge npm run build` passed. Exported HTML checks confirmed the APK/checksum URLs, metadata, SHA-256, one H1, valid anchors, image prefix and preserved draft noindex; old empty-download copy is absent.
 - Browser checks passed at the default desktop viewport and 390px mobile width: download card displayed, checksum details expanded, mobile menu exposed the download anchor and closed after selection. Screenshot: `previews/apk-download-mobile.png`. Full device/vehicle testing and APK installation or upgrades remain unverified.
 - The temporary local preview was stopped. Website deployment was not triggered; run the existing manual Pages workflow after this source update.
+
+## Chinese homepage verification (November 9, 2026)
+
+- Localized the default homepage to Simplified Chinese: navigation, content, receiver diagram, FAQ, download/install instructions, footer, accessible names and image alternative text. Brand and technical identifiers retain their original names.
+- Set document language to `zh-CN` and localized title/description. Added native Chinese font fallbacks, natural heading spacing and more readable mobile labels without external font downloads.
+- `npm run typecheck` and `NEXT_PUBLIC_BASE_PATH=/PlayBridge npm run build` passed. Exported HTML checks passed for Chinese metadata/content/accessible labels, one H1, valid anchors, image base path, unchanged APK/checksum links and SHA-256, and preserved draft noindex. Checked that the previous English UI phrases are absent.
+- Browser creation and reconnection both timed out, so Chinese desktop/mobile visual layout and interaction checks remain unverified in this update. The earlier English UI check does not substitute for this check. Temporary preview stopped; Pages deployment not triggered.
