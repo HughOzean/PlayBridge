@@ -1,0 +1,14 @@
+{
+  "version": "0.2.9",
+  "versionCode": 20,
+  "packageName": "com.playbridge.app",
+  "minSdk": 31,
+  "androidVersion": "Android 12",
+  "architecture": "arm64-v8a",
+  "sizeBytes": 382236,
+  "sizeLabel": "373.3 KiB",
+  "sha256": "a6378f662568f6685c9566eff28d2a1eb7dc3383d8808c6b9d873a67c2d9053c",
+  "downloadUrl": "https://github.com/HughOzean/PlayBridge/releases/download/v0.2.9/PlayBridge-0.2.9-arm64-release.apk",
+  "releaseUrl": "https://github.com/HughOzean/PlayBridge/releases/tag/v0.2.9",
+  "checksumUrl": "https://github.com/HughOzean/PlayBridge/releases/download/v0.2.9/PlayBridge-0.2.9-arm64-release.apk.sha256"
+}

@@ -34,7 +34,7 @@ The repository includes `.github/workflows/pages.yml`. It builds and deploys onl
 
 The workflow reads the base path from `actions/configure-pages`. Default project sites use `/PlayBridge`; user sites or custom domains can use an empty path. The same build-time value prefixes Next.js assets, the hero image and favicon. Rebuild after changing the deployment path. Images are served as existing local WebP files without the server-side Next.js image optimizer. `.nojekyll` is included for static hosting.
 
-The repository is private. **ASSUMPTION — requires verification:** your account plan permits Pages on private repositories; the current API did not expose a plan name. GitHub requires Pro/Team/Enterprise for private-repository Pages. Do not change repository visibility just to deploy without reviewing that decision. See [GitHub Pages availability and workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+The repository was verified as public on November 9, 2026. The Pages API reports a workflow-based site at `https://hughozean.github.io/PlayBridge/`. Repository visibility was not changed by the APK upload task. See [GitHub Pages availability and workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 To build and preview the default project subpath locally:
 
@@ -54,8 +54,8 @@ The draft `noindex, follow` remains intentional. Deployability does not mark the
 - Responsive navigation with mobile toggle and anchor links.
 - The hero uses an AI-generated photorealistic scene of a parked car, served as a local WebP with responsive Next.js Image layout and no runtime image optimization. It is visibly labeled as AI-generated, not a product screenshot or evidence of compatibility. Image provenance and prompt are recorded in `previews/image-generation.md`.
 - The interactive receiver diagram remains a CSS/SVG concept illustration.
-- APK distribution intentionally empty: no APK, fake download, signup form or source repository link.
-- The group shared `PlayBridge-0.2.9-arm64-release.apk`; binary metadata and compatibility have not been independently verified. It is not included in this project.
+- APK release metadata and pinned download links are maintained in `src/data/release.json`; binary files are hosted in GitHub Releases rather than committed to the website source.
+- The user supplied `PlayBridge-0.2.9-arm64-release.apk` for distribution. Binary verification records are under `docs/releases/`; metadata and signature checks do not establish device compatibility or real-vehicle testing.
 - Developer reported no real-vehicle testing as of November 5, 2026. Copy preserves that dated status.
 
 ## Before public deployment
@@ -63,11 +63,11 @@ The draft `noindex, follow` remains intentional. Deployability does not mark the
 1. Confirm product wording, installation target, minimum Android version, receiver requirements and real-device test results.
 2. Confirm a real domain. Then add metadataBase, canonical, Open Graph URL, robots and sitemap using that domain. No domain is invented here.
 3. This local draft currently emits `noindex, follow` in `src/app/layout.tsx`. Remove the noindex only when public content and release status are ready; validate HTML and GSC after deployment.
-4. To add an APK, verify the binary, version, signer, architecture, minimum SDK, size and SHA-256. Replace the empty release area in `src/components/Home.tsx` with verified release information and a real link.
+4. For every APK update, verify the binary, version, signer, architecture, minimum SDK, size and SHA-256. Upload a versioned Release asset and matching checksum, verify anonymous download bytes, then update `src/data/release.json` and the verification record. Keep the exact version pinned so displayed details match the downloaded binary. Do not overwrite old version assets.
 5. Add a GitHub link only after repository ownership, dependency licenses and release scope are confirmed. No open-source license is selected for the product.
 6. Publish privacy details only after actual permissions, data collection and support tooling are confirmed.
 
-No site was deployed and no third-party tracking or data collection is configured.
+This repository uses a manually triggered Pages deployment workflow. The APK upload task does not trigger website deployment. No third-party tracking or data collection is configured in the website; this says nothing about the Android app's behavior.
 
 ## Verification (November 6, 2026)
 
@@ -93,3 +93,12 @@ No site was deployed and no third-party tracking or data collection is configure
 - Mounted the subpath export locally at `/PlayBridge/`: homepage and all 12 referenced assets returned HTTP 200; a missing route and an incorrectly root-addressed image returned HTTP 404. The temporary preview was then stopped.
 - GitHub Pages API returned 404; account plan was not disclosed by the user API. Pages deployment and the live URL remain unverified. The manual deployment workflow has not been run. No repository visibility change was made.
 - Browser interaction checks were not rerun for this export change; prior browser QA limitations still apply.
+
+## APK distribution verification (November 9, 2026)
+
+- Published experimental prerelease [v0.2.9](https://github.com/HughOzean/PlayBridge/releases/tag/v0.2.9) with the original APK and `.sha256` asset. Android 12/API 31 minimum, ARM64 only, version code 20, 382,236 bytes. Official Google `apksigner` signature verification passed; see `docs/releases/0.2.9-verification.md` for certificate details and limitations.
+- Anonymous HTTP downloads of both assets succeeded. The downloaded APK was byte-for-byte identical to the supplied file; its SHA-256 matched both the local record and uploaded checksum.
+- Navigation, hero entry and download card now lead to the APK; FAQ and compatibility requirements read from verified release metadata. Binary distribution does not establish availability of Android app source code.
+- `npm run typecheck` and `NEXT_PUBLIC_BASE_PATH=/PlayBridge npm run build` passed. Exported HTML checks confirmed the APK/checksum URLs, metadata, SHA-256, one H1, valid anchors, image prefix and preserved draft noindex; old empty-download copy is absent.
+- Browser checks passed at the default desktop viewport and 390px mobile width: download card displayed, checksum details expanded, mobile menu exposed the download anchor and closed after selection. Screenshot: `previews/apk-download-mobile.png`. Full device/vehicle testing and APK installation or upgrades remain unverified.
+- The temporary local preview was stopped. Website deployment was not triggered; run the existing manual Pages workflow after this source update.

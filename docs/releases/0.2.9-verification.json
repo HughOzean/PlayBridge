@@ -1,0 +1,47 @@
+{
+  "verified_on": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "file_name": "PlayBridge-0.2.9-arm64-release.apk",
+  "size_bytes": 382236,
+  "sha256": "a6378f662568f6685c9566eff28d2a1eb7dc3383d8808c6b9d873a67c2d9053c",
+  "package_name": "com.playbridge.app",
+  "version_name": "0.2.9",
+  "version_code": 20,
+  "min_sdk": 31,
+  "minimum_android": "Android 12 (API 31)",
+  "target_sdk": 34,
+  "debuggable": false,
+  "debuggable_basis": "Manifest attribute absent; Android default is false.",
+  "native_abis": [
+    "arm64-v8a"
+  ],
+  "zip_integrity_passed": true,
+  "signature": {
+    "tool": "Google Android SDK Build Tools 35.0.0 apksigner",
+    "result": "verified",
+    "exit_code": 0,
+    "v1": false,
+    "v2": true,
+    "v3": false,
+    "v3_1": false,
+    "v4": false,
+    "source_stamp": false,
+    "signer_count": 1,
+    "certificate_dn": "CN=CarPlayWith",
+    "certificate_sha256": "cad40e7599394d0816465fcfc726e68e84b3cb86b12b54ed3f5325f0707bcf31",
+    "key_algorithm": "RSA",
+    "key_bits": 3072
+  },
+  "tools": {
+    "manifest_parser": "apkutils 4.0.0",
+    "java_runtime": "Eclipse Temurin JRE 21.0.13+9 (temporary /tmp extraction)"
+  },
+  "limitations": [
+    "Signing certificate ownership has not been independently authenticated.",
+    "No Android device installation, launch, update or real-vehicle compatibility testing was performed.",
+    "No malware analysis, network/data-collection audit or source-code review was performed.",
+    "Minimum Android version is the manifest installation requirement, not proof of compatibility with any phone or receiver.",
+    "Only this APK was supplied; signing continuity with earlier versions was not checked."
+  ],
+  "apk_modified": false
+}

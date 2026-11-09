@@ -8,8 +8,8 @@
 - PlayBridge 当前被描述为实验性 Android 桥接应用：设计目标是把手机车载界面的视频、音频转发到无线 CarPlay 车机或兼容的 Windows 接收端，并回传触摸输入。
 - 原型能力描述不等于经过验证的兼容性结果。区分 Android Auto、Android Automotive OS 和 Android 车机，不得混为一谈。
 - 页面记录的是开发者于 **2026-11-05** 报告尚未进行实车测试的历史状态。只有取得新的测试证据后，才能更新该状态；不得将旧日期改成今天以暗示重新验证。
-- 群内分享过的 `PlayBridge-0.2.9-arm64-release.apk` 不在本仓库中，其文件名不能作为版本、架构、签名或兼容性已验证的依据。
-- APK 分发区当前有意留空。没有可核验的发布资源时，保持占位，不创建假下载、虚构仓库链接或无后端的注册表单。
+- 用户已提供 `PlayBridge-0.2.9-arm64-release.apk` 并授权上传分发。二进制托管于 GitHub Releases，发布元数据在 `src/data/release.json`，核验记录在 `docs/releases/`；文件名不能作为版本、架构、签名或兼容性已验证的依据。
+- 下载区只连接实际上传并核验的版本化资源，更新时同步元数据、校验文件与 FAQ，不创建假下载、虚构源码链接或无后端的注册表单。
 - CSS/SVG 设备画面是概念插图，必须保留“非产品截图”的可见说明及可访问描述。
 - 未确认正式域名、托管平台、CDN、GSC 数据及生产部署配置。涉及这些信息时标记：`ASSUMPTION — requires verification`。
 - 不把 Apple、Google 或汽车厂商描述为合作方；保留独立软件、商标归属及停车设置与测试提示。
@@ -22,7 +22,9 @@
 | --- | --- |
 | `src/app/page.tsx` | 首页路由，渲染 `Home` |
 | `src/app/layout.tsx` | 根布局、英文文档语言、Metadata、草稿 robots 指令和图标 |
-| `src/components/Home.tsx` | 页面文案、概念插图、移动导航、接收端切换、FAQ、APK 占位 |
+| `src/components/Home.tsx` | 页面文案、概念插图、移动导航、接收端切换、FAQ、APK 下载区 |
+| `src/data/release.json` | 经核验的 APK 版本、要求、大小、SHA-256 及固定版本下载链接 |
+| `docs/releases/` | 二进制核验记录、发布说明及校验文件 |
 | `src/app/globals.css` | Tailwind 导入、主题变量、全局样式和响应式布局 |
 | `public/icon.svg` | 站点图标 |
 | `next.config.ts` | 静态导出、构建时 basePath、关闭运行时图片优化及 `poweredByHeader` |
