@@ -50,19 +50,21 @@ The draft `noindex, follow` remains intentional. Deployability does not mark the
 
 ## Content and interactions
 
-- Simplified Chinese product page: concept, capabilities, interactive receiver diagram, compatibility notes, setup overview and native accordion FAQ. Document language is `zh-CN`; metadata and accessible labels are also localized. Brand names, technical identifiers and verified release data retain their original values.
+- Bilingual product page: English at `/` (`lang="en"`), Simplified Chinese at `/zh/` (`lang="zh-CN"`). With the project base path these become `/PlayBridge/` and `/PlayBridge/zh/`. Each has localized metadata and accessible labels, using shared page markup and verified release data.
+- Header language links preserve the current section hash and include the build-time base path. Switching languages uses a full navigation between localized root layouts.
+- The navigation includes section 04, “Setup” / “连接流程” (`#setup`). The current section is marked with a green background, white text and `aria-current="location"` as the user scrolls or follows anchor links.
 - Responsive navigation with mobile toggle and anchor links.
 - The hero uses an AI-generated photorealistic scene of a parked car, served as a local WebP with responsive Next.js Image layout and no runtime image optimization. It is visibly labeled as AI-generated, not a product screenshot or evidence of compatibility. Image provenance and prompt are recorded in `previews/image-generation.md`.
 - The interactive receiver diagram remains a CSS/SVG concept illustration.
 - APK release metadata and pinned download links are maintained in `src/data/release.json`; binary files are hosted in GitHub Releases rather than committed to the website source.
 - The user supplied `PlayBridge-0.2.9-arm64-release.apk` for distribution. Binary verification records are under `docs/releases/`; metadata and signature checks do not establish device compatibility or real-vehicle testing.
-- Developer reported no real-vehicle testing as of November 5, 2026. Copy preserves that dated status.
+- The real-vehicle testing FAQ and dated compatibility notice were removed at the user's request. Historical verification records remain in the release documentation; removal does not establish tested compatibility.
 
 ## Before public deployment
 
 1. Confirm product wording, installation target, minimum Android version, receiver requirements and real-device test results.
 2. Confirm a real domain. Then add metadataBase, canonical, Open Graph URL, robots and sitemap using that domain. No domain is invented here.
-3. This local draft currently emits `noindex, follow` in `src/app/layout.tsx`. Remove the noindex only when public content and release status are ready; validate HTML and GSC after deployment.
+3. This draft currently emits `noindex, follow` through `src/components/LocaleLayout.tsx`. Remove the noindex only when public content and release status are ready; validate HTML and GSC after deployment.
 4. For every APK update, verify the binary, version, signer, architecture, minimum SDK, size and SHA-256. Upload a versioned Release asset and matching checksum, verify anonymous download bytes, then update `src/data/release.json` and the verification record. Keep the exact version pinned so displayed details match the downloaded binary. Do not overwrite old version assets.
 5. Add a GitHub link only after repository ownership, dependency licenses and release scope are confirmed. No open-source license is selected for the product.
 6. Publish privacy details only after actual permissions, data collection and support tooling are confirmed.
@@ -109,3 +111,12 @@ This repository uses a manually triggered Pages deployment workflow. The APK upl
 - Set document language to `zh-CN` and localized title/description. Added native Chinese font fallbacks, natural heading spacing and more readable mobile labels without external font downloads.
 - `npm run typecheck` and `NEXT_PUBLIC_BASE_PATH=/PlayBridge npm run build` passed. Exported HTML checks passed for Chinese metadata/content/accessible labels, one H1, valid anchors, image base path, unchanged APK/checksum links and SHA-256, and preserved draft noindex. Checked that the previous English UI phrases are absent.
 - Browser creation and reconnection both timed out, so Chinese desktop/mobile visual layout and interaction checks remain unverified in this update. The earlier English UI check does not substitute for this check. Temporary preview stopped; Pages deployment not triggered.
+
+## Bilingual navigation verification (November 10, 2026)
+
+- Restored English at `/`, moved Chinese to `/zh/`, with separate static root layouts emitting the correct `en` / `zh-CN` HTML language and localized metadata. Both pages use the same `Home` component. The root URL now serves English rather than redirecting to Chinese; the header exposes both language versions.
+- Removed the real-vehicle test FAQ and dated compatibility notice from both languages at the user's request. Each FAQ now has five entries. Added section 04 `#setup` and its “Setup” / “连接流程” navigation entry.
+- Added a shared bilingual header with a persistent language selector and active-section indication. Language links include the deployment base path and retain the current section hash after hydration. Scroll/resize listeners and a header resize observer update the green/white indicator and `aria-current="location"`.
+- `NEXT_PUBLIC_BASE_PATH=/PlayBridge npm run build` and `npm run typecheck` passed. Both localized pages and all 13 HTML-referenced resources per page returned HTTP 200 under the project base path. HTML checks confirmed language, H1, five FAQs, valid section anchors, language URLs, unchanged APK/checksum URLs, removed notices and preserved noindex.
+- Executed 23 pure Node mocked-component checks for the actual header code: top/no active section, all six section positions, bottom/download, click selection/settling/timeouts, manual scroll cancellation, menu closing/Escape, resize offsets, direct hash navigation, language links and effect cleanup. These checks simulate DOM geometry and events; they do not verify browser rendering or layout.
+- Browser inventory timed out and native browser access reported missing Computer Use permissions. Desktop/mobile visual and real-browser interaction verification remains pending. Temporary local preview stopped; no Pages deployment was triggered.

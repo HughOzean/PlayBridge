@@ -4,10 +4,10 @@
 
 ## 1. 项目定位与事实边界
 
-- 本仓库是 PlayBridge 的简体中文产品落地页，不包含 Android 应用或 Windows 接收端实现。
+- 本仓库是 PlayBridge 的中英文产品落地页：英文位于 `/`，简体中文位于 `/zh/`，不包含 Android 应用或 Windows 接收端实现。
 - PlayBridge 当前被描述为实验性 Android 桥接应用：设计目标是把手机车载界面的视频、音频转发到无线 CarPlay 车机或兼容的 Windows 接收端，并回传触摸输入。
 - 原型能力描述不等于经过验证的兼容性结果。区分 Android Auto、Android Automotive OS 和 Android 车机，不得混为一谈。
-- 页面记录的是开发者于 **2026-11-05** 报告尚未进行实车测试的历史状态。只有取得新的测试证据后，才能更新该状态；不得将旧日期改成今天以暗示重新验证。
+- 用户已要求移除实车测试 FAQ 和兼容区日期提示。历史测试状态仅留在发布核验文档；删去页面提示不代表测试已经完成，不得据此增加经过实车验证的声明。
 - 用户已提供 `PlayBridge-0.2.9-arm64-release.apk` 并授权上传分发。二进制托管于 GitHub Releases，发布元数据在 `src/data/release.json`，核验记录在 `docs/releases/`；文件名不能作为版本、架构、签名或兼容性已验证的依据。
 - 下载区只连接实际上传并核验的版本化资源，更新时同步元数据、校验文件与 FAQ，不创建假下载、虚构源码链接或无后端的注册表单。
 - CSS/SVG 设备画面是概念插图，必须保留“非产品截图”的可见说明及可访问描述。
@@ -20,8 +20,10 @@
 
 | 路径 | 职责 |
 | --- | --- |
-| `src/app/page.tsx` | 首页路由，渲染 `Home` |
-| `src/app/layout.tsx` | 根布局、简体中文文档语言、Metadata、草稿 robots 指令和图标 |
+| `src/app/(en)/` | 英文根布局与 `/` 首页 |
+| `src/app/(zh)/` | 中文根布局与 `/zh/` 首页 |
+| `src/components/LocaleLayout.tsx` | 共用根布局、各语言 Metadata、草稿 robots 指令和图标 |
+| `src/components/Header.tsx` | 响应式导航、语言切换及滚动板块指示器 |
 | `src/components/Home.tsx` | 页面文案、概念插图、移动导航、接收端切换、FAQ、APK 下载区 |
 | `src/data/release.json` | 经核验的 APK 版本、要求、大小、SHA-256 及固定版本下载链接 |
 | `docs/releases/` | 二进制核验记录、发布说明及校验文件 |
@@ -73,7 +75,8 @@ npm start -- --base-path /PlayBridge --port 3101
 ## 4. 实施约定
 
 - 默认端到端执行：检查上下文、最小范围修改、验证、交付。可从源码推断的信息不要反复询问。
-- 与用户沟通默认使用中文；网站默认文案、Metadata、`lang="zh-CN"` 和可访问名称保持简体中文。品牌名和技术标识（如 Android、CarPlay、SHA-256）保留原名，除非任务明确要求其他语言。
+- 与用户沟通默认使用中文；网站 `/` 使用英文与 `lang="en"`，`/zh/` 使用简体中文与 `lang="zh-CN"`。两版本的正文、Metadata 和可访问名称须匹配对应语言；共用同一页面结构与发布元数据。
+- 语言切换链接须包含构建时 `basePath`，保留当前板块锚点。跨语言切换使用普通链接完整加载，以保证根 HTML 语言标记正确，不仅在客户端修改正文。
 - 保持现有浅色纸面背景、深绿色与青柠点缀、衬线强调文字及 CSS/SVG 插图语言；沿用 `globals.css` 主题变量。
 - 沿用现有组件和样式组织；按实际复杂度拆分组件，不为简单展示页引入状态管理、UI 库、远程字体或新服务。
 - 新增客户端组件只用于确有交互需求的部分。Metadata 继续使用 Next.js 的服务端元数据接口。
@@ -87,7 +90,8 @@ npm start -- --base-path /PlayBridge --port 3101
 涉及页面的变更按实际影响检查：
 
 - 首页 HTTP 状态正常，主要文案在初始 HTML 中可见，浏览器控制台没有新增错误。
-- 保持一个清晰的 H1、合理的标题层级及有效的导航锚点；当前主要锚点为 `main`、`experience`、`how-it-works`、`compatibility`、`faq`、`get-started`。
+- 保持一个清晰的 H1、合理的标题层级及有效的导航锚点；当前主要锚点为 `main`、`experience`、`how-it-works`、`compatibility`、`setup`、`faq`、`get-started`。
+- 导航当前板块使用绿底白字及 `aria-current="location"`，同时核验点击、手动滚动、直接带锚点打开、页面顶部与底部状态，以及手机菜单关闭后的状态。
 - 移动菜单可展开和关闭，点击导航后关闭，`aria-expanded` 与实际状态一致，`aria-controls` 指向存在的元素。
 - 接收端切换同步更新按钮 `aria-pressed`、示意图及说明，不暗示真实设备连接已建立。
 - FAQ 保持原生 `details` / `summary` 行为，键盘可操作。
@@ -98,7 +102,7 @@ npm start -- --base-path /PlayBridge --port 3101
 
 ## 6. 技术 SEO 与上线规则
 
-- `layout.tsx` 当前使用 `robots: { index: false, follow: true }`，这是本地草稿的刻意设置。普通文案或样式修改不应顺带删除 `noindex`。
+- `LocaleLayout.tsx` 的元数据当前使用 `robots: { index: false, follow: true }`，这是草稿的刻意设置。普通文案或样式修改不应顺带删除 `noindex`。
 - 正式域名与公开发布状态得到确认后，再配置 `metadataBase`、canonical、Open Graph URL、robots 和 sitemap。统一协议、主机与路径规则，不填入猜测域名或其他产品域名。
 - `robots.txt` 的 Disallow 不能替代 `noindex`；需要搜索引擎读取 `noindex` 时，不应同时阻止该页面抓取。
 - sitemap 仅列出希望索引且返回正常状态的规范 URL。上线时检查 canonical、robots 元标签与 HTTP `X-Robots-Tag` 是否冲突。
