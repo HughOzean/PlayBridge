@@ -60,7 +60,7 @@
 /* Simplified Chinese typography: native fonts, natural spacing and readable labels. */
 html:lang(zh-CN) body{font-family:Arial,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
 html:lang(zh-CN) .hero h1{font-size:clamp(30px,3.8vw,52px);line-height:1.4;letter-spacing:.015em}
-html:lang(zh-CN) .hero h1 em{font-family:"Songti SC",SimSun,serif;font-style:normal;letter-spacing:.015em}
+html:lang(zh-CN) .hero h1 em{font-family:inherit;font-weight:inherit;font-style:normal;letter-spacing:inherit}
 html:lang(zh-CN) h2{line-height:1.4;letter-spacing:.01em}
 html:lang(zh-CN) .feature h3{letter-spacing:0;line-height:1.5}
 html:lang(zh-CN) .eyebrow{font-size:11px;letter-spacing:.12em;line-height:1.7}
